@@ -23,7 +23,6 @@ public class OOPExample {
 		jason.talk();
 		jordan.talk();
 		joseph.talk();
-		
 	}
 
 }
