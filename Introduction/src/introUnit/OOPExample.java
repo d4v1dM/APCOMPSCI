@@ -13,13 +13,16 @@ public class OOPExample {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Student jillian = new Senior("Jillian");
-		Student jason = new Student("jason");
-		Student jordan = new Student("jordan");
+		Student jillian = new Senior("Jillian","programmer");
+		Student jason = new Freshman("jason");
+		Student jordan = new Sophomore("jordan");
+		Student joseph = new Junior("joseph");
 		
 		jillian.talk();
+
 		jason.talk();
 		jordan.talk();
+		joseph.talk();
 		
 	}
 
