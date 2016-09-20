@@ -8,7 +8,6 @@ public class DataTypes {
 		System.out.println((double) 5.0/2); // data type will be casted.
 		System.out.println(5/2);
 		// because 5 and 2 are both integers, so the return type will be integer.
-		// added to check if github is working
 		System.out.println(3+5.0/2+5*2); //java takes data type that takes most space
 		System.out.println(3.0+5/2+5*2); 
 		System.out.println((int)(3.0 + 5)/(2 + 5 * 2));
@@ -26,6 +25,20 @@ public class DataTypes {
 		System.out.println("d1 - d2 : " + (d1 - d2));
 		// double numbers are declared.
 		// when subtracting, there are numbers after the decimal, since its a double.
+		
+		//String s = (String) 1;
+		//System.out.println(s);
+		//String ten = "10";
+		//String two = "2";
+//		if(ten.compareTo(two) > 0){
+//			System.out.println("10 is greater than two");
+//		}else{
+//			System.out.println("10 is not greater than two");
+//		}
+		
+		// cant access a superclass through a subclass.
+		
+		
 		
 		
 		
