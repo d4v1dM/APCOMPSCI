@@ -37,5 +37,9 @@ public class MathRandom {
 		return rand;
 		
 	}
+        public static String getRandCard(){
+                String[] suites = new String[5];
+                String[] vals = {""};
+        }
 
 }
