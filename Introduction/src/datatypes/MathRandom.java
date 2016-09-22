@@ -38,8 +38,9 @@ public class MathRandom {
 		
 	}
         public static String getRandCard(){
-                String[] suites = new String[5];
-                String[] vals = {""};
+                String[] suites = {"Hearts","Spades"};
+                String[] vals = {"1","2","3"};
+                return suites[0] + vals[0];
         }
 
 }
