@@ -1,17 +1,18 @@
-package stringExercise;
+package chatBot;
 
 import java.util.Scanner;
 
-public class StringPractice {
+public class David {
 
 	static Scanner input;
 	static String user;
 	static boolean inLoop;
 	static String response;
+	static Topic school;
 	
 	static int lineCount;
 	public static void main(String[] args){
-		createAScanner();
+		createTopics();
 		lineCount = 0;
 		//demonstrateStringMethods();
 		promptName();
@@ -74,7 +75,11 @@ public class StringPractice {
 			response = getInput();
 			if(response.indexOf("good") >= 0){
 				cleanPrint("I'm so happy you are happy");
-			}else{
+			}else if(response.indexOf("school") >= 0){
+				inLoop = false;
+				school.talk();
+				}else{
+			
 				cleanPrint("I'm sorry I dont understand you.");
 			}
 			
@@ -88,28 +93,9 @@ public class StringPractice {
 		System.out.println("You typed " + userInput);
 	}
 
-	public static void createAScanner() {
+	public static void createTopics() {
 		input = new Scanner(System.in);
-	}
-	public static void demonstrateStringMethods(){
-		// create text to compare. Compare the first with the second concatenate with third.
-		String text = "Hello World";
-		String text2 = "Hello ";
-		String text3 = "World";
-		
-		// == versus .equals, very vital when comparing strings
-		if(text.equals(text2 + text3)){
-			System.out.println("Strings are equal");
-		}
-		System.out.println(text);
-		System.out.println(text2 + text3);
-		
-		String word1 = "Aarvark";
-		String word2 = "Zyzzyva";
-		
-		if(word1.compareTo(word2) < 0){
-			System.out.println("Word1 is before word2, lexicongraphically");
-		}
+		school = new School();
 	}
 
 }
