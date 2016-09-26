@@ -4,7 +4,7 @@ public class School implements Topic {
 
 	private boolean inSchoolLoop;
 	private String schoolResponse;
-	//@Override
+
 	public School(){
 		
 	}

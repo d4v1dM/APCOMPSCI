@@ -17,7 +17,7 @@ public class David {
 		//demonstrateStringMethods();
 		promptName();
 		//promptInput();
-		//talkForever();
+		talkForever();
 	}
 	
 	private static void promptName() {
@@ -73,7 +73,7 @@ public class David {
 		while(inLoop){
 			cleanPrint("Greetings, " + user + " , how are you?");
 			response = getInput();
-			if(response.indexOf("good") >= 0){
+			if(findKeyword(response,"good",0)){
 				cleanPrint("I'm so happy you are happy");
 			}else if(response.indexOf("school") >= 0){
 				inLoop = false;
@@ -84,6 +84,47 @@ public class David {
 			}
 			
 		}
+	}
+
+	public static boolean findKeyword(String searchString, String key, int startIndex) {
+		// TODO Auto-generated method stub
+		
+		// delete whitespace
+		String phrase = searchString.trim();
+		
+		//set all letters to lower case
+		phrase = phrase.toLowerCase();
+		key = key.toLowerCase();
+		
+		// find position of key
+		int psn = phrase.indexOf(key);
+		
+		// keep looking for the word until you find the correct context
+		while(psn >= 0){
+			
+			String before = " ";
+			String after = " ";
+			
+			// check to see if the phrase does not end with this word 
+			if(psn + key.length() < phrase.length()){
+				after = phrase.substring(psn + key.length(), psn + key.length() + 1);
+				
+				// if the phrase does not begin with this word
+				if(psn > 0){
+					before = phrase.substring(psn - 1,psn).toLowerCase();
+				}
+				
+				if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
+					return true;
+				}
+				
+				// in case the keyword was not found yet, check the rest of the string
+				psn = phrase.indexOf(key,psn + 1);
+			}
+			return false;
+		}
+				
+		return true;
 	}
 
 	public static void promptInput() {
