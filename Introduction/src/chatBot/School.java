@@ -24,4 +24,15 @@ public class School implements Topic {
 		}
 	}
 
+	public boolean isTriggered(String userInput) {
+		// TODO Auto-generated method stub
+		if(David.findKeyword(userInput,"school",0) >= 0){
+			return true;
+		}
+		if(David.findKeyword(userInput,"class",0) >= 0){
+			return true;
+		}
+		return false;
+	}
+
 }

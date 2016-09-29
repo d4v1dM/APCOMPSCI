@@ -9,6 +9,8 @@ public class David {
 	static boolean inLoop;
 	static String response;
 	static Topic school;
+	static Topic like;
+	static Topic hello;
 	
 	static int lineCount;
 	public static void main(String[] args){
@@ -28,7 +30,7 @@ public class David {
 		
 	}
 	
-	public static String getInput(){
+	public static String getInput(){      
 		return input.nextLine();
 	}
 
@@ -73,20 +75,21 @@ public class David {
 		while(inLoop){
 			cleanPrint("Greetings, " + user + " , how are you?");
 			response = getInput();
-			if(findKeyword(response,"good",0)){
+			if(findKeyword(response,"good",0) >= 0){
 				cleanPrint("I'm so happy you are happy");
-			}else if(response.indexOf("school") >= 0){
+			}
+			else if(findKeyword(response,"school",0) >= 0){
 				inLoop = false;
 				school.talk();
-				}else{
-			
+				}
+			else{
 				cleanPrint("I'm sorry I dont understand you.");
 			}
 			
 		}
 	}
 
-	public static boolean findKeyword(String searchString, String key, int startIndex) {
+	public static int findKeyword(String searchString, String key, int startIndex) {
 		// TODO Auto-generated method stub
 		
 		// delete whitespace
@@ -96,8 +99,13 @@ public class David {
 		phrase = phrase.toLowerCase();
 		key = key.toLowerCase();
 		
+//		cleanPrint("The phrase is " + phrase);
+//		cleanPrint("The key is " + key);
+		
 		// find position of key
 		int psn = phrase.indexOf(key);
+		
+		//cleanPrint("The position found is " + psn);
 		
 		// keep looking for the word until you find the correct context
 		while(psn >= 0){
@@ -108,25 +116,57 @@ public class David {
 			// check to see if the phrase does not end with this word 
 			if(psn + key.length() < phrase.length()){
 				after = phrase.substring(psn + key.length(), psn + key.length() + 1);
+				//cleanPrint("The character before " + key + " is " + before);
 				
 				// if the phrase does not begin with this word
 				if(psn > 0){
 					before = phrase.substring(psn - 1,psn).toLowerCase();
+					//cleanPrint("The character before " + key + " is " + before);
 				}
 				
 				if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-					return true;
+					//cleanPrint(key + " was found at " + psn);
+					if(noNegations(phrase,psn)){
+						return psn;
+					}
 				}
 				
 				// in case the keyword was not found yet, check the rest of the string
 				psn = phrase.indexOf(key,psn + 1);
+				//cleanPrint(key + " was not found. " + "checking " + psn);
 			}
-			return false;
+			//return false;
 		}
 				
-		return true;
+		return -1;
 	}
 
+	private static boolean noNegations(String phrase, int index){
+		// check for word "NO" (3 characters)
+		// check to see if there is space for the word
+		// "NO " to be in front of the index
+		
+		if(index - 3 >= 0 && phrase.substring(index - 3, index).equals("no ")){
+			return false;
+		}
+		
+		// check for "NOT"
+		if(index - 4 >= 0 && phrase.substring(index - 4,index).equals("not ")){
+			return false;
+		}
+		
+		// check for "NEVER"
+		if(index - 6 >= 0 && phrase.substring(index - 6,index).equals("never ")){
+			return false;
+		}
+		
+		// check for "n't "
+		if(index - 4 >= 0 && phrase.substring(index - 4, index).equals("n't ")){
+			return false;
+		}
+		return true;
+		
+	}
 	public static void promptInput() {
 		// TODO Auto-generated method stub
 		print(user + " ,try inputing a String");
@@ -137,6 +177,8 @@ public class David {
 	public static void createTopics() {
 		input = new Scanner(System.in);
 		school = new School();
+		like = new DavidsLike();
+		hello = new DavidHello();
 	}
 
 }
