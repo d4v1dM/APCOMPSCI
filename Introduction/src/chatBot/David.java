@@ -11,7 +11,7 @@ public class David {
 	static Topic school;
 	static Topic like;
 	static Topic hello;
-	
+	//
 	static int lineCount;
 	public static void main(String[] args){
 		createTopics();
@@ -178,7 +178,7 @@ public class David {
 		input = new Scanner(System.in);
 		school = new School();
 		like = new DavidsLike();
-		hello = new DavidHello();
+		hello = new DavidHello();//S
 	}
 
 }
