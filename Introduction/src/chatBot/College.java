@@ -38,7 +38,7 @@ public class College implements Topic {
 	public void askSAT(){
 		Scanner input = new Scanner(System.in);
 		ask("What are your scores for the SAT?");
-		
+		//
 		ask("For the Math section: ");
 		this.SAT[0] = input.nextInt();
 		ask("For the Reading section: ");
