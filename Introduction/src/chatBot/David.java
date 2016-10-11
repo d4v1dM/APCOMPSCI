@@ -11,15 +11,18 @@ public class David {
 	static Topic school;
 	static Topic like;
 	static Topic hello;
-	
+	static Topic college;
+	//
 	static int lineCount;
 	public static void main(String[] args){
 		createTopics();
 		lineCount = 0;
 		//demonstrateStringMethods();
-		promptName();
+		//promptName();
 		//promptInput();
-		talkForever();
+		//talkForever();
+		
+		college.talk();
 	}
 	
 	private static void promptName() {
@@ -168,7 +171,8 @@ public class David {
 		input = new Scanner(System.in);
 		school = new School();
 		like = new DavidsLike();
-		hello = new DavidHello();
+		hello = new DavidHello();//S
+		college = new College();
 	}
 
 }
