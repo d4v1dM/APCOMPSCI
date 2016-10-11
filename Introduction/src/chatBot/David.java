@@ -90,55 +90,45 @@ public class David {
 	}
 
 	public static int findKeyword(String searchString, String key, int startIndex) {
-		// TODO Auto-generated method stub
-		
-		// delete whitespace
-		String phrase = searchString.trim();
-		
-		//set all letters to lower case
+		// delete white space at the beginning and at the end
+		String phrase = searchString.trim(); //trim is a method included in the string api
+		//set all letters to lowercase; gets rid of case sensitive
 		phrase = phrase.toLowerCase();
 		key = key.toLowerCase();
 		
-//		cleanPrint("The phrase is " + phrase);
-//		cleanPrint("The key is " + key);
+//		System.out.println("The phrase is " + phrase);
+//		System.out.println("The key is " + key);
 		
-		// find position of key
+		//find position of key
 		int psn = phrase.indexOf(key);
 		
-		//cleanPrint("The position found is " + psn);
+//		System.out.println("The position found is " + psn);
 		
-		// keep looking for the word until you find the correct context
+		// keep looking for the word until you find the right context; isolated word
 		while(psn >= 0){
-			
 			String before = " ";
 			String after = " ";
-			
-			// check to see if the phrase does not end with this word 
+			// if the phrase does not end with this word
 			if(psn + key.length() < phrase.length()){
-				after = phrase.substring(psn + key.length(), psn + key.length() + 1);
-				//cleanPrint("The character before " + key + " is " + before);
-				
-				// if the phrase does not begin with this word
-				if(psn > 0){
-					before = phrase.substring(psn - 1,psn).toLowerCase();
-					//cleanPrint("The character before " + key + " is " + before);
-				}
-				
-				if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
-					//cleanPrint(key + " was found at " + psn);
-					if(noNegations(phrase,psn)){
-						return psn;
-					}
-				}
-				
-				// in case the keyword was not found yet, check the rest of the string
-				psn = phrase.indexOf(key,psn + 1);
-				//cleanPrint(key + " was not found. " + "checking " + psn);
+				after = phrase.substring(psn + key.length(), psn + key.length() + 1).toLowerCase();
+//				System.out.println("The character after " + key+ " is " + after);
 			}
-			//return false;
+			// if the phrase does not being with this word
+			if(psn > 0){
+				before = phrase.substring(psn - 1, psn).toLowerCase();
+//				System.out.println("The character before " + key + " is " + before);
+			}
+			if(before.compareTo("a") < 0 && after.compareTo("a") < 0){
+//				System.out.println(key + " was found at " + psn);
+				if(noNegations(phrase, psn)){
+					return psn;
+				}
+			}
+			//incase the keyword was not found yet, check the rest of the string
+			psn = phrase.indexOf(key, psn +1); //takes position and add 1
+//			System.out.println(key + " was not found. Checking " + psn);
 		}
-				
-		return -1;
+		return -1; // return if cant find any key words
 	}
 
 	private static boolean noNegations(String phrase, int index){
