@@ -3,6 +3,11 @@ package array6;
 public class ArraysMain {
 
 	public static void main(String[] args) {
+		String[] someStrings = new String[100];
+		populateArray(someStrings);
+		printArray(someStrings);
+		changeString(someStrings[99]);
+		printArray(someStrings);
 		long startTime = System.currentTimeMillis();
 		arrayIntroMethod();
 		long endTime = System.currentTimeMillis();
@@ -10,6 +15,24 @@ public class ArraysMain {
 		
 	}
 	
+	private static void printArray(String[] str) {
+		for(String s: str){
+			System.out.println(s);
+		}
+		
+	}
+
+	private static void populateArray(String[] str) {
+		for(int index = 0; index < str.length;index++){
+			str[index] = "value " + (index+1);
+		}
+		
+	}
+	
+	private static void changeString(String s){
+		s = "This string has changed!";
+	}
+
 	public static void arrayIntroMethod(){
 //		int[] zeros1 = {0,0,0};
 //		int[] zeros2 = new int[3];
@@ -30,15 +53,17 @@ public class ArraysMain {
 			System.out.println("" + b);
 		}
 		
-		String[] strings = {"","",""};
+		//String[] strings = {"","",""};
 		String[] strings2 = new String[3];
 		
-		for(String s: strings){
-			System.out.println("" + s);
+		for(int index = 0; index < strings2.length;index++){
+			strings2[index] = "value " + (index+1);
 		}
 		for(String s: strings2){
 			System.out.println("" + s);
 		}
 	}
+	
+	
 
 }
