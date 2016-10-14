@@ -12,11 +12,13 @@ public class ArraysMain {
 		//		changeString(someStrings[99]);
 		//		printArray(someStrings);
 		
-		changeArrayElement(someStrings,99);
-		printArray(someStrings);
+		SampleElement sample = new SampleElement(10);
+		sample.increase();
+		System.out.println("The sample element has been changed to " + sample.getNumber());
 		System.out.println("Completed method in " + (endTime - startTime));
 		
 	}
+	
 	
 	private static void changeArrayElement(String[] someStrings, int i) {
 		// TODO Auto-generated method stub
