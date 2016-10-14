@@ -4,17 +4,33 @@ public class ArraysMain {
 
 	public static void main(String[] args) {
 		String[] someStrings = new String[100];
+		long startTime = System.currentTimeMillis();
 		populateArray(someStrings);
 		printArray(someStrings);
-		changeString(someStrings[99]);
-		printArray(someStrings);
-		long startTime = System.currentTimeMillis();
-		arrayIntroMethod();
 		long endTime = System.currentTimeMillis();
+
+		//		changeString(someStrings[99]);
+		//		printArray(someStrings);
+		
+		changeArrayElement(someStrings,99);
+		printArray(someStrings);
 		System.out.println("Completed method in " + (endTime - startTime));
 		
 	}
 	
+	private static void changeArrayElement(String[] someStrings, int i) {
+		// TODO Auto-generated method stub
+		someStrings[i] = "new item " + (i + 1);
+	}
+
+	private static void changeArray(String[] someStrings) {
+		// TODO Auto-generated method stub
+		someStrings = new String[100];
+		for(int i = 0; i < someStrings.length; i++){
+			someStrings[i] = "new item " + (i + 1);
+		}
+	}
+
 	private static void printArray(String[] str) {
 		for(String s: str){
 			System.out.println(s);
@@ -24,6 +40,7 @@ public class ArraysMain {
 
 	private static void populateArray(String[] str) {
 		for(int index = 0; index < str.length;index++){
+			//changeString(str[index]);
 			str[index] = "value " + (index+1);
 		}
 		
