@@ -4,8 +4,8 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		double[] srtd = {1,5,8,0,3,7};
-		srtd = selectSort(srtd);
+		int[] srtd = {1,5,8,0,3,7};
+		shuffle(srtd);
 		for(double s: srtd){
 			System.out.println(s);
 		}
@@ -98,6 +98,10 @@ public class ArrayAlgos {
 	public static double[] selectSort(double[] arr){
 		int select = -1;
 		for(int i = 0; i < (arr.length - 1); ++i){
+			System.out.println("BEGIN: " + i);
+			for(double s: arr){
+				System.out.println(s);
+			}
 			System.out.println("current: " + arr[i]);
 			for(int j = (i+1); j < arr.length; ++j){
 				if(arr[j] < arr[i]){
@@ -115,5 +119,16 @@ public class ArrayAlgos {
 		double temp = arr[idx1];
 		arr[idx1] = arr[idx2];
 		arr[idx2]  = temp;
+	}
+	public static void swap(int[] arr, int idx1, int idx2){
+		int temp = arr[idx1];
+		arr[idx1] = arr[idx2];
+		arr[idx2]  = temp;
+	}
+	private static void shuffle(int[] arr){
+		for(int i = 0; i < arr.length; ++i){
+			int random = (int) (Math.random() * arr.length);
+			swap(arr,i,random);
+		}
 	}
 }
