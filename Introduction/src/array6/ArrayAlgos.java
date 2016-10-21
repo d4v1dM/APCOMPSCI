@@ -4,8 +4,11 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] srtd = {5,4,0,2,1,0};
-		System.out.println(isSorted(srtd));
+		double[] srtd = {1,5,8,0,3,7};
+		srtd = selectSort(srtd);
+		for(double s: srtd){
+			System.out.println(s);
+		}
 	}
 
 	public static boolean isSorted(int[] array){
@@ -37,7 +40,7 @@ public class ArrayAlgos {
 	public static double getAvg(double[] array){
 		double sum = 0;
 		int len = array.length;
-		for(int i = 0; i < len;++i){
+		for(int i = 0; i < len; ++i){
 			sum += array[i];
 		}
 		return ((double)(sum/len));
@@ -75,5 +78,38 @@ public class ArrayAlgos {
 			}
 		}
 		return ctr;
+	}
+	public static int lessMean(double[] arr){
+		double mean = getAvg(arr);
+		int ctr = 0;
+		for(int i = 0; i < arr.length; ++i){
+			if(arr[i] < mean){
+				++ctr;
+			}
+		}
+		return ctr;
+	}
+	public static double getMedian(double[] arr){
+		double median = 0;
+		
+		
+		return median;
+	}
+	public static double[] selectSort(double[] arr){
+		int select = -1;
+		for(int i = 0; i < (arr.length - 1); ++i){
+			for(int j = (i+1); j < arr.length; ++j){
+				if(arr[j] < arr[i]){
+					select = j;
+				}
+			}
+			if(select != -1) swap(arr,i,select);
+		}
+		return arr;
+	}
+	public static void swap(double[] arr, int idx1, int idx2){
+		double temp = arr[idx1];
+		arr[idx1] = arr[idx2];
+		arr[idx2]  = temp;
 	}
 }
