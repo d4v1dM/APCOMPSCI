@@ -4,15 +4,12 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		double[] srtd = {1,5,8,0,3,-7};
+		double[] srtd = {1,5,8,0,3,-7}; // -7 0 1 3 5 8
 //		shuffle(srtd);
 //		for(double s: srtd){
 //			System.out.println(s);
 //		}
-		selectSort(srtd);
-		for(double s: srtd){
-			System.out.println(s);
-		}
+		System.out.println(getMedian(srtd));
 	}
 
 	public static boolean isSorted(int[] array){
@@ -38,8 +35,20 @@ public class ArrayAlgos {
          * index 5 = the number of values below the mean
          * */
          double[] stats = new double[6];
+         stats[0] = getAvg(array);
+         stats[1] = getMax(array);
+         stats[2] = getMin(array);
+         stats[3] = getMedian(array);
+         stats[4] = greaterMean(array);
+         stats[5] = lessMean(array);
          return stats;
     }
+	public static double getMedian(double[] arr){
+		selectSort(arr);
+		int len = arr.length;
+		if(len % 2 != 0) return (arr[(len - 1)/2]);
+		else return ((double)((arr[len/2] + arr[(len/2) - 1])/2)); // get avg.
+	}
 	public static double getAvg(double[] array){
 		double sum = 0;
 		int len = array.length;
@@ -92,12 +101,6 @@ public class ArrayAlgos {
 		}
 		return ctr;
 	}
-	public static double getMedian(double[] arr){
-		double median = 0;
-		
-		
-		return median;
-	}
 	public static void selectSort(double[] arr){
 		for(int i = 0; i < (arr.length - 1); i++){
 			int min = i;
@@ -125,4 +128,22 @@ public class ArrayAlgos {
 			swap(arr,i,random);
 		}
 	}
+	public static int countDifferences(int[] array1, int[] array2){
+        /**Here, you will write an method that returns the number of values in two arrays 
+         * that are NOT the same (either in value OR location).
+         * The arrays ALWAYS have the same length
+         * Examples:
+         * countDifferences({1,2,3},{1,2,3}) returns 0, since these arrays are exactly the same
+         * countDifferences({3,2,3,4},{3,2,5,4}) returns 1, since '3','2', and '4' are same value, same location, but the 3 and 5 are different
+         * countDifferences({4,4,4,4},{1,2,3,4}) returns 3, since '4' is only at the same index ONE time and three others are not
+         * countDifferences({1,2,3},{1,3,2}) returns 2, since '2' and '3' are both present, but different locations
+         * 
+         * */
+		int ctr = 0;
+		for(int i = 0; i < array1.length; i++){
+			if(array1[i] == array2[i]) continue;
+			ctr++;
+		}
+         return ctr;
+    }
 }
