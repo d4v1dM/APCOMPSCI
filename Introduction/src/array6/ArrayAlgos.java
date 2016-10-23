@@ -4,12 +4,9 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		double[] srtd = {1,5,8,0,3,-7}; // -7 0 1 3 5 8
-//		shuffle(srtd);
-//		for(double s: srtd){
-//			System.out.println(s);
-//		}
-		System.out.println(getMedian(srtd));
+		int[] ln = {1,2,3,4,5,8,9};
+		longestConsecutiveSequence(ln);
+		
 	}
 
 	public static boolean isSorted(int[] array){
@@ -159,12 +156,21 @@ public class ArrayAlgos {
 		int[] longst = new int[array1.length];
 		int ctr = 0;
 		for(int i = 0; i < (array1.length - 1); ++i){
-			if(array1[i] == (array1[i] + 1)){
+			if(array1[i] == (array1[i + 1] - 1)){
 				++longst[ctr];
 			} else{
 				++ctr;
-				++longst[ctr];
 			}
+		}
+		int max = 1;
+		for(int i = 0; i < (ctr +1); ++i){
+			++longst[i];
+			if(longst[i] > max) max = longst[i];
+			System.out.println(longst[i]);
+		}
+		System.out.println("max: " + max + "\n");
+		for(int s: longst){
+			System.out.println(s);
 		}
         
         return 0;
