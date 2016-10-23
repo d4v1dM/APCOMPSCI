@@ -163,7 +163,7 @@ public class ArrayAlgos {
 				++longst[ctr];
 			} else{
 				++ctr;
-				
+				++longst[ctr];
 			}
 		}
         
