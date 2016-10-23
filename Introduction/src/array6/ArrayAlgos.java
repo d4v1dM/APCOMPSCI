@@ -4,8 +4,11 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] ln = {1,2,3,4,5,8,9};
-		longestConsecutiveSequence(ln);
+		int[] r = generateDistinctItemsList(10);
+		for(int s:r){
+			System.out.println(s);
+		}
+		
 		
 	}
 
@@ -14,7 +17,7 @@ public class ArrayAlgos {
          * This method takes an in array as a parameter and returns 'true' if the array is already sorted in DESCENDING order
          * */
 		for(int i = 0; i < (array.length - 1);i++){
-			if(!(array[i] > array[i + 1])){
+			if(array[i] < array[i + 1]){
 				return false;
 			}
 		}
@@ -153,24 +156,65 @@ public class ArrayAlgos {
          * longestSequence({0,9,10,11,4,3,8,9}) returns '3', since '9,10,11' is 3 integers long
          * longestSequence({0,9,8,11,4,3,7,9}) returns '1', since there are no consecutive integers
          * */
-		int[] longst = new int[array1.length];
+		int[] longst = new int[array1.length]; // storing the number of possible consecutives.
 		int ctr = 0;
+		++longst[ctr]; // since everything is 0 when initialized, we the first item has to be increased to one.
 		for(int i = 0; i < (array1.length - 1); ++i){
-			if(array1[i] == (array1[i + 1] - 1)){
-				++longst[ctr];
-			} else{
+			if(array1[i] == (array1[i + 1] - 1)) ++longst[ctr];
+			else{
 				++ctr;
+				++longst[ctr];
 			}
 		}
+		
 		int max = 1;
 		for(int i = 0; i < (ctr +1); ++i){
-			++longst[i];
 			if(longst[i] > max) max = longst[i];
-			System.out.println(longst[i]);
 		}
-		System.out.println("max: " + max + "\n");
-		for(int s: longst){
-			System.out.println(s);
+        return max; // max will be returned.
+    }
+	public static int[] generateDistinctItemsList(int n){
+        /**
+         * This method needs to generate an int[] of length n that contains distinct, random integers
+         * between 1 and 2n 
+         * The method will be tested by verifying that the array you return is n items long,
+         * contains only entries between 1 and 2n (inclusive) and has no duplicates
+         * 
+         * */
+		int[] rand = new int[n];
+		for(int i = 0; i < n; ++i){
+			rand[i] = ((int) (Math.random() * (2*n))) + 1;
+		}		
+        return rand; 
+    }
+	public static int longestSharedSequence(int[] array1, int[] array2){
+        /**This method counts the longest unbroken, shared sequence in TWO arrays.
+         * The sequence does NOT have to be a consecutive sequence
+         * It does NOT matter where the sequence begins, the arrays might not be the same length
+         * 
+         * Examples:
+         * longestSequence({9,6,3,4,3,8,9}, {9,6,3,4,3,6,7}) returns '5', since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long 
+         * longestSequence({0,9,6,3,4,3,8,9}, {1,2,9,6,3,4,3,6,7}) returns '5', 
+         *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
+         * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
+         * */
+		int[] max = (array1.length > array2.length) ? array1 : array2;
+		int[] min = (array1.length == max.length) ? array2 : array1;
+		int[] longst = new int[max.length];
+		boolean found;
+		int curr,ctr = 0;
+		for(int i = 0; i < min.length; ++i){
+			found = false;
+			curr = min[i];
+			for(int j = i; j < max.length; ++j){
+				if(curr == min[j]){
+					found = true;
+					break;
+				}
+			}
+			if(found){
+				++longst[ctr];
+			} else ++ctr;
 		}
         
         return 0;
