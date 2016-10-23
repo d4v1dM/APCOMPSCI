@@ -4,11 +4,18 @@ public class ArrayExercises {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] t = popDiceArray(20);
-		for(int i = 0; i < t.length;i++){
-			System.out.println(t[i]);
+//		int[] t = popDiceArray(20);
+//		for(int i = 0; i < t.length;i++){
+//			System.out.println(t[i]);
+//		}
+//		System.out.println(isRandom(t));
+		String[][] cards = getStdCards();
+		for(String[] card: cards){
+			System.out.println(card);
 		}
-		System.out.println(isRandom(t));
+		
+	}
+	public static void populateDieArray(int[] arr){
 		
 	}
 	public static int rollFairDie(){
@@ -54,11 +61,24 @@ public class ArrayExercises {
 		}
 		return true;
 	}
-	public static int[][] getStdCards(){
-		int[][] deck = new int[52][2];
-//		int[] suits = new int[4];
-//		int[] nums = new int[]
-//		for(int i =)
+	public static String[][] getStdCards(){
+		String[][] deck = new String[52][4];
+		String[] suits = {"Spades","Hearts","Diamonds","Clubs"};
+		String[] suitOther = {"Ace","Jack","Queen","King"};
+		int[] nums =  {2,3,4,5,6,7,8,9,10};
+		for(int i =0; i < suits.length;i++){
+			for(int j = 0; i < nums.length;j++){
+				deck[i][j] = nums[j] + " of " + suits[j];
+			}
+			for(int k = 0, j = nums.length; k < suitOther.length;k++,j++){
+				deck[i][j] = suitOther[k] + " of " + suits[i];
+			}
+		}
+		for(int i = 0; i < suits.length; i++){
+			for(int j = 0; j < (nums.length + suitOther.length);j++){
+				System.out.println(deck[i][j]);
+			}
+		}
 		return deck;
 	}
 
