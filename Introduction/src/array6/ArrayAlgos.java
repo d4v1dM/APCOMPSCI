@@ -4,8 +4,12 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] srtd = {1,5,8,0,3,7};
-		shuffle(srtd);
+		double[] srtd = {1,5,8,0,3,-7};
+//		shuffle(srtd);
+//		for(double s: srtd){
+//			System.out.println(s);
+//		}
+		selectSort(srtd);
 		for(double s: srtd){
 			System.out.println(s);
 		}
@@ -17,7 +21,6 @@ public class ArrayAlgos {
          * */
 		for(int i = 0; i < (array.length - 1);i++){
 			if(!(array[i] > array[i + 1])){
-				System.out.println("current: " + array[i] + " , next: " + array[i+1]);
 				return false;
 			}
 		}
@@ -95,25 +98,16 @@ public class ArrayAlgos {
 		
 		return median;
 	}
-	public static double[] selectSort(double[] arr){
-		int select = -1;
-		for(int i = 0; i < (arr.length - 1); ++i){
-			System.out.println("BEGIN: " + i);
-			for(double s: arr){
-				System.out.println(s);
-			}
-			System.out.println("current: " + arr[i]);
-			for(int j = (i+1); j < arr.length; ++j){
-				if(arr[j] < arr[i]){
-					select = j;
+	public static void selectSort(double[] arr){
+		for(int i = 0; i < (arr.length - 1); i++){
+			int min = i;
+			for(int j = (i+1); j < arr.length; j++){
+				if(arr[j] < arr[min]){
+					min = j;
 				}
 			}
-			if(select != -1) swap(arr,i,select);
-			for(double s: arr){
-				System.out.println(s);
-			}
+			if(min != i) swap(arr,i,min); // only swap if you have to.
 		}
-		return arr;
 	}
 	public static void swap(double[] arr, int idx1, int idx2){
 		double temp = arr[idx1];
