@@ -54,12 +54,12 @@ public class ArrayExercises {
 		}
 		return true;
 	}
-	public static int[] getStdCards(){
+	public static int[][] getStdCards(){
 		int[][] deck = new int[52][2];
-		int[] suits = new int[4];
-		int[] nums = new int[]
-		for(int i =)
-		return stdDeck;
+//		int[] suits = new int[4];
+//		int[] nums = new int[]
+//		for(int i =)
+		return deck;
 	}
 
 }
