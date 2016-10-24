@@ -231,10 +231,6 @@ public class ArrayAlgos {
         swap(arr,0,arr.length -1);
         for(int i = 0; i < arr.length - 2;++i){
             swap(arr,i,(i+1));
-            System.out.println("i: " + i + "\n");
-            for(int s: arr){
-            	System.out.println(s);
-            }
         }
     }
 }
