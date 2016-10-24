@@ -229,11 +229,12 @@ public class ArrayAlgos {
             END-   1 2 3 4 5 0
         */
         swap(arr,0,arr.length -1);
-        for(int s: arr){
-        	System.out.println(s);
-        }
-        for(int i = 0; i < arr.length - 1;++i){
+        for(int i = 0; i < arr.length - 2;++i){
             swap(arr,i,(i+1));
+            System.out.println("i: " + i + "\n");
+            for(int s: arr){
+            	System.out.println(s);
+            }
         }
     }
 }
