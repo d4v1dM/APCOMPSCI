@@ -4,9 +4,14 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] srtd = {1,5,8,0,3,7};
-		shuffle(srtd);
-		for(double s: srtd){
+		int[] srtd = {0,1,2,3,4,5};
+//		shuffle(srtd);
+//		int[] r = generateDistinctItemsList(10);
+//		for(int s:r){
+//			System.out.println(s);
+//		}
+		cycleOnce(srtd);
+		for(int s:srtd){
 			System.out.println(s);
 		}
 	}
@@ -16,8 +21,7 @@ public class ArrayAlgos {
          * This method takes an in array as a parameter and returns 'true' if the array is already sorted in DESCENDING order
          * */
 		for(int i = 0; i < (array.length - 1);i++){
-			if(!(array[i] > array[i + 1])){
-				System.out.println("current: " + array[i] + " , next: " + array[i+1]);
+			if(array[i] < array[i + 1]){
 				return false;
 			}
 		}
@@ -35,8 +39,20 @@ public class ArrayAlgos {
          * index 5 = the number of values below the mean
          * */
          double[] stats = new double[6];
+         stats[0] = getAvg(array);
+         stats[1] = getMax(array);
+         stats[2] = getMin(array);
+         stats[3] = getMedian(array);
+         stats[4] = greaterMean(array);
+         stats[5] = lessMean(array);
          return stats;
     }
+	public static double getMedian(double[] arr){
+		selectSort(arr);
+		int len = arr.length;
+		if(len % 2 != 0) return (arr[(len - 1)/2]);
+		else return ((double)((arr[len/2] + arr[(len/2) - 1])/2)); // get avg.
+	}
 	public static double getAvg(double[] array){
 		double sum = 0;
 		int len = array.length;
@@ -89,31 +105,16 @@ public class ArrayAlgos {
 		}
 		return ctr;
 	}
-	public static double getMedian(double[] arr){
-		double median = 0;
-		
-		
-		return median;
-	}
-	public static double[] selectSort(double[] arr){
-		int select = -1;
-		for(int i = 0; i < (arr.length - 1); ++i){
-			System.out.println("BEGIN: " + i);
-			for(double s: arr){
-				System.out.println(s);
-			}
-			System.out.println("current: " + arr[i]);
-			for(int j = (i+1); j < arr.length; ++j){
-				if(arr[j] < arr[i]){
-					select = j;
+	public static void selectSort(double[] arr){
+		for(int i = 0; i < (arr.length - 1); i++){
+			int min = i;
+			for(int j = (i+1); j < arr.length; j++){
+				if(arr[j] < arr[min]){
+					min = j;
 				}
 			}
-			if(select != -1) swap(arr,i,select);
-			for(double s: arr){
-				System.out.println(s);
-			}
+			if(min != i) swap(arr,i,min); // only swap if you have to.
 		}
-		return arr;
 	}
 	public static void swap(double[] arr, int idx1, int idx2){
 		double temp = arr[idx1];
@@ -131,4 +132,108 @@ public class ArrayAlgos {
 			swap(arr,i,random);
 		}
 	}
+	public static int countDifferences(int[] array1, int[] array2){
+        /**Here, you will write an method that returns the number of values in two arrays 
+         * that are NOT the same (either in value OR location).
+         * The arrays ALWAYS have the same length
+         * Examples:
+         * countDifferences({1,2,3},{1,2,3}) returns 0, since these arrays are exactly the same
+         * countDifferences({3,2,3,4},{3,2,5,4}) returns 1, since '3','2', and '4' are same value, same location, but the 3 and 5 are different
+         * countDifferences({4,4,4,4},{1,2,3,4}) returns 3, since '4' is only at the same index ONE time and three others are not
+         * countDifferences({1,2,3},{1,3,2}) returns 2, since '2' and '3' are both present, but different locations
+         * 
+         * */
+		int ctr = 0;
+		for(int i = 0; i < array1.length; i++){
+			if(array1[i] == array2[i]) continue;
+			ctr++;
+		}
+         return ctr;
+    }
+	public static int longestConsecutiveSequence(int[] array1){
+        /**This method counts the longest consecutive sequence in an array.
+         * It does not matter where the sequence begins
+         * If there are no consecutive numbers, the method should return '1'
+         * 
+         * Examples:
+         * longestSequence({1,2,3,4,5,8,9}) returns '5', since the sequence '1,2,3,4,5' is 5 integers long 
+         * longestSequence({0,9,10,11,4,3,8,9}) returns '3', since '9,10,11' is 3 integers long
+         * longestSequence({0,9,8,11,4,3,7,9}) returns '1', since there are no consecutive integers
+         * */
+		int[] longst = new int[array1.length]; // storing the number of possible consecutives.
+		int ctr = 0;
+		++longst[ctr]; // since everything is 0 when initialized, we the first item has to be increased to one.
+		for(int i = 0; i < (array1.length - 1); ++i){
+			if(array1[i] == (array1[i + 1] - 1)) ++longst[ctr];
+			else{
+				++ctr;
+				++longst[ctr];
+			}
+		}
+		
+		int max = 1;
+		for(int i = 0; i < (ctr +1); ++i){
+			if(longst[i] > max) max = longst[i];
+		}
+        return max; // max will be returned.
+    }
+	public static int[] generateDistinctItemsList(int n){
+        /**
+         * This method needs to generate an int[] of length n that contains distinct, random integers
+         * between 1 and 2n 
+         * The method will be tested by verifying that the array you return is n items long,
+         * contains only entries between 1 and 2n (inclusive) and has no duplicates
+         * 
+         * */
+		int[] rand = new int[n];
+		for(int i = 0; i < n; ++i){
+			rand[i] = ((int) (Math.random() * (2*n))) + 1;
+		}		
+        return rand; 
+    }
+	public static int longestSharedSequence(int[] array1, int[] array2){
+        /**This method counts the longest unbroken, shared sequence in TWO arrays.
+         * The sequence does NOT have to be a consecutive sequence
+         * It does NOT matter where the sequence begins, the arrays might not be the same length
+         * 
+         * Examples:
+         * longestSequence({9,6,3,4,3,8,9}, {9,6,3,4,3,6,7}) returns '5', since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long 
+         * longestSequence({0,9,6,3,4,3,8,9}, {1,2,9,6,3,4,3,6,7}) returns '5', 
+         *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
+         * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
+         * */
+		int[] max = (array1.length > array2.length) ? array1 : array2;
+		int[] min = (array1.length == max.length) ? array2 : array1;
+		int[] longst = new int[max.length];
+		boolean found;
+		int curr,ctr = 0;
+		for(int i = 0; i < min.length; ++i){
+			found = false;
+			curr = min[i];
+			for(int j = i; j < max.length; ++j){
+				if(curr == min[j]){
+					found = true;
+					break;
+				}
+			}
+			if(found){
+				++longst[ctr];
+			} else ++ctr;
+		}
+        
+        return 0;
+    }
+	public static void cycleOnce(int[] arr){
+        /*
+            START- 0 1 2 3 4 5
+            END-   1 2 3 4 5 0
+        */
+        swap(arr,0,arr.length -1);
+        for(int s: arr){
+        	System.out.println(s);
+        }
+        for(int i = 0; i < arr.length - 1;++i){
+            swap(arr,i,(i+1));
+        }
+    }
 }

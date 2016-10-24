@@ -9,7 +9,10 @@ public class ArrayExercises {
 //			System.out.println(t[i]);
 //		}
 //		System.out.println(isRandom(t));
-		String[][] res = getStdCards();
+		String[][] cards = getStdCards();
+		for(String[] card: cards){
+			System.out.println(card);
+		}
 		
 	}
 	public static void populateDieArray(int[] arr){
