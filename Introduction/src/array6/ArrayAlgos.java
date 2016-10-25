@@ -4,16 +4,13 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] srtd = {0,1,2,3,4,5};
+		double[] srtd = {0,1,2,3,4,5};
 //		shuffle(srtd);
 //		int[] r = generateDistinctItemsList(10);
 //		for(int s:r){
 //			System.out.println(s);
 //		}
-		cycleOnce(srtd);
-		for(int s:srtd){
-			System.out.println(s);
-		}
+		System.out.println(countUnderBound(srtd,4));
 	}
 
 	public static boolean isSorted(int[] array){
@@ -233,4 +230,14 @@ public class ArrayAlgos {
             swap(arr,i,(i+1));
         }
     }
+	public static int countUnderBound(double[] arr, double d){
+		// return number of numbers that are less then param d.
+		int ctr = 0;
+		for(int i = 0; i < arr.length; ++i){
+			if(arr[i] < d){
+				++ctr;
+			}
+		}
+		return ctr;
+	}
 }
