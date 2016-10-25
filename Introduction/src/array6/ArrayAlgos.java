@@ -4,13 +4,15 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		double[] srtd = {0,1,2,3,4,5};
+		int[] srtd = {2,3,4,0,1,2,3,4,5};
 //		shuffle(srtd);
 //		int[] r = generateDistinctItemsList(10);
 //		for(int s:r){
 //			System.out.println(s);
 //		}
-		System.out.println(countUnderBound(srtd,4));
+
+		int[] sec = {2,3,4,-1};
+		System.out.println(contains(srtd,sec));
 	}
 
 	public static boolean isSorted(int[] array){
@@ -239,5 +241,32 @@ public class ArrayAlgos {
 			}
 		}
 		return ctr;
+	}
+	public static int[] getSubArray(int[] arr, int startIdx, int endIdx){
+		/*
+		 * return an array containing elements from startIndex to endIndex
+		 * @param arr
+		 * @param startIdx
+		 * @param endIdx
+		 * @return 
+		 */
+		int[] subArr = new int[(endIdx - startIdx) + 1];
+		for(int i = 0; i < subArr.length; ++i){
+			subArr[i] = arr[i + startIdx];
+		}
+		return subArr;
+	}
+	public static boolean contains(int[] arr, int[] subArray){
+		for(int i=0; i < arr.length; ++i){
+			if(arr[i] == subArray[0]){
+				int j = 1;
+				for(; (j < subArray.length) && (i < arr.length); ++j){
+					++i;
+					if(subArray[j] != arr[i]) break;
+				}
+				if(j == subArray.length) return true;
+			}
+		}
+		return false;
 	}
 }
