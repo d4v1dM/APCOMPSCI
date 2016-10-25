@@ -63,14 +63,17 @@ public class ArrayTask {
 			found = false;
 			curr = min[i];
 			for(int j = i; j < max.length; ++j){
-				if(curr == min[j]){
+				if(curr == max[j]){
 					found = true;
 					break;
 				}
 			}
 			if(found){
 				++longst[ctr];
-			} else ++ctr;
+			} else{
+				System.out.println("New one");
+				++ctr;
+			}
 		}
 		for(int s: longst){
 			System.out.println(s);
