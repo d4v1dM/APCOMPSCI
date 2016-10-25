@@ -56,6 +56,15 @@ public class ArrayTask {
          * */
 		int[] max = (array1.length > array2.length) ? array1 : array2;
 		int[] min = (array1.length == max.length) ? array2 : array1;
+		System.out.println("max: \n");
+		for(int s:max){
+			System.out.println(s);
+		}
+		
+		System.out.println("min: \n");
+		for(int s:min){
+			System.out.println(s);
+		}
 		int[] longst = new int[max.length];
 		boolean found;
 		int curr,ctr = 0;
@@ -64,6 +73,7 @@ public class ArrayTask {
 			curr = min[i];
 			for(int j = i; j < max.length; ++j){
 				if(curr == max[j]){
+					System.out.println("current: " + curr + " ,max[i]: " + max[j]);
 					found = true;
 					break;
 				}
