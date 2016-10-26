@@ -264,4 +264,41 @@ public class ArrayAlgos {
             swap(arr,i,(i+1));
         }
     }
+	public static int countUnderBound(double[] arr, double d){
+		// return number of numbers that are less then param d.
+		int ctr = 0;
+		for(int i = 0; i < arr.length; ++i){
+			if(arr[i] < d){
+				++ctr;
+			}
+		}
+		return ctr;
+	}
+	public static int[] getSubArray(int[] arr, int startIdx, int endIdx){
+		/*
+		 * return an array containing elements from startIndex to endIndex
+		 * @param arr
+		 * @param startIdx
+		 * @param endIdx
+		 * @return 
+		 */
+		int[] subArr = new int[(endIdx - startIdx) + 1];
+		for(int i = 0; i < subArr.length; ++i){
+			subArr[i] = arr[i + startIdx];
+		}
+		return subArr;
+	}
+	public static boolean contains(int[] arr, int[] subArray){
+		for(int i=0; i < arr.length; ++i){
+			if(arr[i] == subArray[0]){
+				int j = 1;
+				for(; (j < subArray.length) && (i < arr.length); ++j){
+					++i;
+					if(subArray[j] != arr[i]) break;
+				}
+				if(j == subArray.length) return true;
+			}
+		}
+		return false;
+	}
 }
