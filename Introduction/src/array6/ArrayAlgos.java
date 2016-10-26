@@ -4,11 +4,13 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] r = {1,2,3,4,5,6,8};
-		rev(r);
+		int[] r = {9,6,3,4,3,8,9};
+		int[] s = {9,6,3,4,3,6,7};
 		
-		
+		System.out.println(longSeq(r,s));
 	}
+		
+		
 	public static void rev(int[] arr){
 		int len = (int) Math.floor(arr.length/2);
 		for(int i = 0, j = arr.length - 1; i < len; ++i,--j){
@@ -195,7 +197,7 @@ public class ArrayAlgos {
 		}		
         return rand; 
     }
-	public static int longestSharedSequence(int[] array1, int[] array2){
+	public static int longSeq(int[] array1, int[] array2){
         /**This method counts the longest unbroken, shared sequence in TWO arrays.
          * The sequence does NOT have to be a consecutive sequence
          * It does NOT matter where the sequence begins, the arrays might not be the same length
@@ -206,26 +208,35 @@ public class ArrayAlgos {
          *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
          * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
          * */
+		
+		// not really needed, but seems nicer to seperate them.
 		int[] max = (array1.length > array2.length) ? array1 : array2;
 		int[] min = (array2.length == max.length) ? array1 : array2;
-		int[] longst = new int[max.length];
-		boolean found;
-		int curr,ctr = 0;
-		for(int i = 0; i < min.length; ++i){
-			found = false;
-			curr = min[i];
-			for(int j = i; j < max.length; ++j){
-				if(curr == min[j]){
-					found = true;
-					break;
+		
+		int[] longst = new int[max.length];// counter to store the sequences.
+		boolean found; // keeps track to see if number of subArray was found in other Array.
+		int ctr = 0; // will keep track of new sequence.
+		for(int i = 0; i < min.length; ++i){ // loop through min array.
+			found = false; // default will be item not found.
+			for(int j = i; j < max.length; ++j){ // iterate through other array, starting at i.
+				if(min[i] == max[j]){ // item was found!
+					found = true; // found changes to true.
+					break; // get out of inner loop.
 				}
 			}
-			if(found){
-				++longst[ctr];
-			} else ++ctr;
+			if(!found) ++ctr; // not found -> restart ctr;
+			else ++longst[ctr]; // increase value of ctr if found.
 		}
-        
-        return 0;
+		
+		// get the greatest number from the ctr array.
+		int maxSeq = 0; // zero is default if nothing shared.
+		for(int i = 0; i < (ctr+1); ++i){
+			if(longst[i] > maxSeq){
+				// number is bigger -> new max sequence.
+				maxSeq = longst[i];
+			}
+		}
+        return maxSeq;
     }
 	public static void cycleThrough(int[] array, int n){
         /** This problem represents people moving through a line.
