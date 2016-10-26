@@ -4,12 +4,20 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] r = generateDistinctItemsList(10);
-		for(int s:r){
+		int[] r = {1,2,3,4,5,6,8};
+		rev(r);
+		
+		
+	}
+	public static void rev(int[] arr){
+		int len = (int) Math.floor(arr.length/2);
+		for(int i = 0, j = arr.length - 1; i < len; ++i,--j){
+			swap(arr,i,j);
+		}
+		System.out.println("Reversed: \n");
+		for(int s: arr){
 			System.out.println(s);
 		}
-		
-		
 	}
 
 	public static boolean isSorted(int[] array){
@@ -199,7 +207,7 @@ public class ArrayAlgos {
          * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
          * */
 		int[] max = (array1.length > array2.length) ? array1 : array2;
-		int[] min = (array1.length == max.length) ? array2 : array1;
+		int[] min = (array2.length == max.length) ? array1 : array2;
 		int[] longst = new int[max.length];
 		boolean found;
 		int curr,ctr = 0;
@@ -218,5 +226,42 @@ public class ArrayAlgos {
 		}
         
         return 0;
+    }
+	public static void cycleThrough(int[] array, int n){
+        /** This problem represents people moving through a line.
+         * Once they get to the front of the line, they get what they've been waiting for, then they 
+         * immediately go to the end of the line and "cycle through" again.
+         * 
+         * This method reorders the array so that it represents what the array would look like
+         * after it had been cycled through an n number of times.
+         * For example, cycleThrough({2,1,5,6}}, 1) after executing, array == {1,5,6,2} 
+         * because '2' (the person at the front of the line) cycled through and is now at the end of the line
+         * 
+         * cycleThrough({3,7,4,2,8,6,2,9}}, 2) after executing, array == {4,2,8,6,2,9,3,7} 
+         * because '3' and '7' (the TWO people at the front of the line) cycled through and are now at the end of the line
+         * 
+         * Likewise,
+         * cycleThrough({3,7,4,2,8,6,2,9}}, 0) after executing, array == {3,7,4,2,8,6,2,9}  (no movement)
+         * and the most interesting case, 
+         * cycleThrough({3,7,4,2,8,6,2,9}}, 49) after executing, array == {7,4,2,8,6,2,9,3}  
+         * Because after cycling through 49 times, everyone had a chance to go through 6 times, but '3'
+         * was able to go through one more time than anyone else
+         * 
+         * CHALLENGE
+         * For extra credit, make your method handle NEGATIVE n
+         * */
+         for(int i = 0; i < n; ++i){
+             cycleOnce(array);
+         }
+    }
+    public static void cycleOnce(int[] arr){
+        /*
+            START- 0 1 2 3 4 5
+            END-   1 2 3 4 5 0
+        */
+        swap(arr,0,arr.length - 1);
+        for(int i = 0; i < arr.length - 2;++i){
+            swap(arr,i,(i+1));
+        }
     }
 }

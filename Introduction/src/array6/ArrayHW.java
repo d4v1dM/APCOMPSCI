@@ -6,8 +6,8 @@ public class ArrayHW {
 		// TODO Auto-generated method stub
 		// test cases
 		int[] unsrtd = {5,3,2,5,67,8,64,3,0};
-		int[] srtd = { 67,64,8,5,5,3,3,2,0};
-		System.out.println(searchSorted(srtd,67));
+		int[] srtd = { 67,64,9,8,5,5,5,3,3,2,0};
+		System.out.println(searchSorted(srtd,5));
 
 	}
 	public static int searchUnsorted(int[] arrayToSearch, int key){
