@@ -4,10 +4,25 @@ public class ArrayTask {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] f = {9,6,3,4,3,8,9};
-		int[] s = {9,6,3,4,3,6,7};
-		System.out.println(longestSharedSequence(f,s));
+		testPrimes(50);
 		
+	}
+	public static boolean hasItem(int[] arr, int n){
+		for(int i = 0; i < arr.length; ++i){
+			if(arr[i] == n) return true;
+		}
+		return false;
+	}
+	public static int[] popRandArray(int[] arr){
+		int rand, len = (int) (Math.random() * (arr.length - 1)) + 1;
+		int[] newArr = new int[len];
+		for(int i = 0; i < len; ++i){
+			do{
+				rand = (int) ((Math.random() * arr.length));
+			}while(hasItem(newArr, arr[rand]));
+			newArr[i] = arr[rand];
+		}
+		return newArr;
 	}
 	public static int longestSharedSeq(int[] array1, int[] array2){
         /**This method counts the longest unbroken, shared sequence in TWO arrays.
@@ -91,5 +106,29 @@ public class ArrayTask {
         
         return 0;
     }
+	public static void testPrimes(int len){
+		int lastNum = (int) (Math.sqrt(len));
+		boolean[] numbers = new boolean[len];
+		for(int i = 0; i < len; ++i){
+			numbers[i] = true;
+		}
+		numbers[0] = false;
+		numbers[1] = false;
+		int increment = 2;
+		boolean first = true;
+		for(int test = 2; test < len; test+= increment){
+			if(!first){
+				numbers[test] = false;
+			}
+			else{
+				first = false;
+			}
+		}
+		for(int i = 0; i < numbers.length; ++i){
+			if(numbers[i]){
+				System.out.println(i + " is prime.");
+			}
+		}
+	}
 
 }

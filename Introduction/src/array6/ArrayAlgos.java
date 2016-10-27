@@ -4,10 +4,10 @@ public class ArrayAlgos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] r = {9,6,3,4,3,8,9};
-		int[] s = {9,6,3,4,3,6,7};
-		
-		System.out.println(longSeq(r,s));
+		int[] r = generateDistinctItemsList(10);
+		for(int s:r){
+			System.out.println(s);
+		}
 	}
 		
 		
@@ -192,11 +192,21 @@ public class ArrayAlgos {
          * 
          * */
 		int[] rand = new int[n];
+		int randNum;
 		for(int i = 0; i < n; ++i){
-			rand[i] = ((int) (Math.random() * (2*n))) + 1;
+			do{
+				randNum = ((int) (Math.random() * (2*n))) + 1;
+			}while(hasItem(rand,randNum,i));
+			rand[i] = randNum;
 		}		
         return rand; 
     }
+	public static boolean hasItem(int[] lst, int n, int end){
+		for(int i = 0; i < end; ++i){
+			if(lst[i] == n) return true;
+		}
+		return false;
+	}
 	public static int longSeq(int[] array1, int[] array2){
         /**This method counts the longest unbroken, shared sequence in TWO arrays.
          * The sequence does NOT have to be a consecutive sequence
@@ -312,4 +322,33 @@ public class ArrayAlgos {
 		}
 		return false;
 	}
+	public static int longestSharedSequence(int[] array1, int[] array2){
+        /**This method counts the longest unbroken, shared sequence in TWO arrays.
+         * The sequence does NOT have to be a consecutive sequence
+         * It does NOT matter where the sequence begins, the arrays might not be the same length
+         * 
+         * Examples:
+         * longestSequence({9,6,3,4,3,8,9}, {9,6,3,4,3,6,7}) returns '5', since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long 
+         * longestSequence({0,9,6,3,4,3,8,9}, {1,2,9,6,3,4,3,6,7}) returns '5', 
+         *          since the sequence '9,6,3,4,3' is in both arrays and is 5 integers long, it doesn't matter that the sequence begins at different indices 
+         * longestSequence({9,6,1,4,3,6,7,9}, {9,6,5,8,3,6,7,0}) returns '3', since the sequence '3,6,7' is in both arrays and is 3 integers long
+         * */
+		
+		int ctr = 0;
+		int longest = 0;
+		for(int i = 0; i < array1.length; ++i){
+			for(int j = 0; j < array2.length; ++j){
+				if((i + ctr) < array1.length){
+					if(array1[i + ctr] == array2[j]){
+						++ctr;
+					}
+					else{
+						ctr = 0;
+					}
+					if(ctr > longest) longest = ctr;
+				}
+			}
+		}
+		return longest;
+    }
 }
