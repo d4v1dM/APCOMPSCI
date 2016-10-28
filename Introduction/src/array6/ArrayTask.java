@@ -107,21 +107,25 @@ public class ArrayTask {
         return 0;
     }
 	public static void testPrimes(int len){
-		int lastNum = (int) (Math.sqrt(len));
+		int lastNum = (int) (Math.sqrt(len)); // last number to check.
 		boolean[] numbers = new boolean[len];
 		for(int i = 0; i < len; ++i){
 			numbers[i] = true;
 		}
 		numbers[0] = false;
 		numbers[1] = false;
-		int increment = 2;
-		boolean first = true;
-		for(int test = 2; test < len; test+= increment){
-			if(!first){
-				numbers[test] = false;
-			}
-			else{
-				first = false;
+		for(int prime = 2; prime <= lastNum; ++prime){
+			// when checking 50 numbers,
+			// tests 2,3,4,5,6,7 as if prime
+			if(numbers[prime]){
+				// only checks numbers that are prime.
+				// (numbers that haven't been "crossed off")
+				// won't check 4 and 6 (crossed off by 2).
+				System.out.println("\n" + prime + "prime is prime. Crossing off : ");
+				for(int test = prime + prime; test < len; test+= prime){
+						System.out.print(test +", ");
+						numbers[test] = false;
+				}
 			}
 		}
 		for(int i = 0; i < numbers.length; ++i){
