@@ -20,6 +20,7 @@ public class CaveExplorer {
 		// set starting point.
 		currentRoom = caves[0][1];
 		currentRoom.enter();
+		caves[0][1].setConnection(caves[0][2]);
 		
 	}
 
