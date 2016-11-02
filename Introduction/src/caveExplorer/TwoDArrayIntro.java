@@ -38,10 +38,50 @@ public class TwoDArrayIntro {
 		pic[0][3] = "/";
 		pic[2][1] = "/";
 		
+		pic[4][3] = "_";
+		pic[4][4] = "_";
+		pic[4][5] = "_";
+		pic[4][6] = "_";
+		pic[5][3] = "|";
+		pic[6][3] = "|";
+		pic[5][6] = "|";
+		pic[6][6] = "|";
+		
+		pic[4][1] = "|";
+		pic[5][1] = "|";
+		pic[6][1] = "|";
+		pic[7][1] = "|";
+		pic[8][1] = "|";
+		
+		pic[4][8] = "|";
+		pic[5][8] = "|";
+		pic[6][8] = "|";
+		pic[7][8] = "|";
+		pic[8][8] = "|";
+		
+		pic[3][2] = "_";
+		pic[3][3] = "_";
+		pic[3][4] = "_";
+		pic[3][5] = "_";
+		pic[3][6] = "_";
+		pic[3][7] = "_";
+		pic[6][4] = "+";
+
+		
 		for(int row = 7; row < pic.length; ++row){
 			for(int col = 0; col < pic[row].length; ++col){
 				pic[row][col] = "M";
 			}
+		}
+		
+		for(int col = 1; col < pic[0].length - 1; ++col){
+			pic[0][col] = "_";
+			pic[pic.length - 1][col] = "_";
+		}
+		
+		for(int row = 1; row < pic.length; ++row){
+			pic[row][0] = "|";
+			pic[row][pic[0].length - 1] = "|";
 		}
 		
 		printPic(pic);
