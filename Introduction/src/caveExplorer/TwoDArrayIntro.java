@@ -1,18 +1,60 @@
 package caveExplorer;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class TwoDArrayIntro {
+	public static String[][] arr2D;
+	public static int i;
+	public static int j;
+	public static Scanner in;
 
 	public static void main(String[] args) {
-		boolean[][] mines = new boolean[6][6];
-		createMines(mines,10);
-		String[][] field = new String[mines.length][mines[0].length];
-		matchValues(field,mines);
-		printPic(field);
+//		boolean[][] mines = new boolean[6][6];
+//		createMines(mines,10);
+//		String[][] field = new String[mines.length][mines[0].length];
+//		matchValues(field,mines);
+//		printPic(field);
 		
+		arr2D = new String[5][4];
+		intro(arr2D);
+		
+		i = 2;
+		j = 3;
+		in = new Scanner(System.in);
+		startExploring();
+	}
+	public static void startExploring(){
+		while(true){
+			System.out.println("You are in room " + arr2D[i][j]);
+			System.out.println("What do you want to do?");
+			
+			String input = in.nextLine();
+			while(!isValid(input)){
+				System.out.println("Please enter " + "w, a, s, or d.");
+				input = in.nextLine();
+			}
+			interpretInput(input);
+		}
 	}
 
+	private static void interpretInput(String input) {
+		// TODO Auto-generated method stub
+		if(input.equals("w") && i > 0) --i;
+		else if(input.equals("a") && j > 0) --j;
+		else if(input.equals("s") && i < arr2D.length - 1) ++i;
+		else if(input.equals("d") && j < arr2D[i].length - 1) ++j;
+		
+	}
+	private static boolean isValid(String input) {
+		// TODO Auto-generated method stub
+		String lc = input.toLowerCase();
+		String[] keys = {"w","a","s","d"};
+		for(String key:keys){
+			if(key.equals(lc)) return true;
+		}
+		return false;
+	}
 	private static void matchValues(String[][] field, boolean[][] mines) {
 		// TODO Auto-generated method stub
 		for(int row = 0; row < field.length; ++row){
@@ -28,13 +70,29 @@ public class TwoDArrayIntro {
 
 	private static String countAdajcent(boolean[][] mines, int r, int c) {
 		// TODO Auto-generated method stub
-		for(int row = r - 1; row <= (r + 1); ++row){
-			for(int col =  c - 1; col <= (c + 1); ++col){
-				if(row != r && col != c){
-					if(row >= 0 && row < mines.length && col >=)
-				}
-			}
-		}
+//		for(int row = r - 1; row <= (r + 1); ++row){
+//			for(int col =  c - 1; col <= (c + 1); ++col){
+//				if(row != r && col != c){
+//					if(row >= 0 && row < mines.length && col >= mines[row].length){
+//						
+//					}
+//				}
+//			}
+//		}
+		
+		// this method only checks elements in the [][]
+		// so it is not necessary to verify they are valid.
+		int count = 0;
+		
+//		for(int row = 0; row < mines.length; ++row){
+//			for(int col = 0; col < mines[row].length; ++col){
+//				if(Math.abs(row - r) + Math.abs(col - c) == 1 && mines[row][col]){
+//					++count;
+//				}
+//			}
+//		}
+		
+		
 		return null;
 	}
 
@@ -148,7 +206,13 @@ public class TwoDArrayIntro {
 				
 				printPic(pic);
 	}
+	public static void intro(String[][] args){
+		for(int row = 0; row < args.length; ++row){
+			for(int col = 0; col < args[row].length; ++col){
+				args[row][col] = "(" + row + ", " + col + ")"; 
+			}
+		}
+	}
 
 
 }
-
