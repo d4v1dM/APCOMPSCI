@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class TwoDArrayIntro {
 	public static String[][] arr2D;
+	public static String[][] pic;
 	public static int i;
 	public static int j;
 	public static Scanner in;
@@ -17,6 +18,7 @@ public class TwoDArrayIntro {
 //		printPic(field);
 		
 		arr2D = new String[5][4];
+		pic = new String[5][4];
 		intro(arr2D);
 		
 		i = 2;
@@ -26,6 +28,7 @@ public class TwoDArrayIntro {
 	}
 	public static void startExploring(){
 		while(true){
+			showX(pic,i,j);
 			System.out.println("You are in room " + arr2D[i][j]);
 			System.out.println("What do you want to do?");
 			
@@ -212,6 +215,15 @@ public class TwoDArrayIntro {
 				args[row][col] = "(" + row + ", " + col + ")"; 
 			}
 		}
+	}
+	public static void showX(String[][] pic, int row, int col){
+		for(int y = 0; y < pic.length; ++y){
+			for(int x = 0; x < pic[y].length; ++x){
+				pic[y][x] = " ";
+			}
+		}
+		pic[row][col] = "X";
+		printPic(pic);
 	}
 
 
