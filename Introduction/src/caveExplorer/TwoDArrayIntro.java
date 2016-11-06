@@ -17,14 +17,38 @@ public class TwoDArrayIntro {
 //		matchValues(field,mines);
 //		printPic(field);
 		
-		arr2D = new String[5][4];
-		pic = new String[5][4];
-		intro(arr2D);
+//		arr2D = new String[5][4];
+//		pic = new String[5][4];
+//		intro(arr2D);
+//		
+//		i = 2;
+//		j = 3;
+//		in = new Scanner(System.in);
+//		startExploring();
+		createGrid(5,5);
+	}
+	private static void createGrid(int row, int col) {
+		row *= 3; // we'll need more space for the '|' in the rows.
+		col *= 2; // we'll need more space for the '___' in the columns.
+		System.out.print(" "); // make space for '|' in the next line so it looks neat!
+		int y = 0, x = 0; // since i'm using two loops and they'll be using the same variable -> lets extend their scope.
+		for(; y < 1; ++y){ // lets create the header first, or the first row.
+			for(; x < col; ++x){ // traverse through the columns.
+				if(x % 2 != 0) System.out.print("___ "); // in every other column, we'll add the top/bottom border.
+			}
+			System.out.println(""); // row is finished -> goto next line.
+		}
+		for(; y <= row; ++y){ // this is the real loop for the body -> traverse through the rows.
+			for(x = 0; x <= col; ++x){ // traverse through the columns.
+				if(y % 3 == 0){ // for every 3rd row:
+					if(x % 2 != 0) System.out.print("___"); // if it's an odd column -> we'll add the top/bottom border.
+					else System.out.print("|"); // if it's an even column -> we'll add the left/right border.
+				}
+				else if(x % 2 == 0) System.out.print("|   "); // for every other row && the column is even -> add the left/right border.
+			}
+			System.out.println(""); // row is finished -> goto next line.
+		}
 		
-		i = 2;
-		j = 3;
-		in = new Scanner(System.in);
-		startExploring();
 	}
 	public static void startExploring(){
 		while(true){
