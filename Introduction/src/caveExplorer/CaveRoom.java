@@ -135,5 +135,14 @@ public class CaveRoom {
 		}
 		
 	}
+	public boolean isValid(String s){
+		String[] keys = {"w","a","s","d"};
+		for(String key: keys){
+			if(s.equals(key)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
