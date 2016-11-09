@@ -11,6 +11,12 @@ public class Inventory {
 	}
 	private void updateMap() {
 		// TODO Auto-generated method stub
+		this.map = " ";
+		
+		for(int i = 0; i < CaveExplorer.caves[0].length; ++i){
+			map += "____"; // four underscores.
+		}
+		map += "___"; // three underscores.
 		
 	}
 	public String getDescription() {
