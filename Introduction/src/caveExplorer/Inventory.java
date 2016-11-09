@@ -16,7 +16,29 @@ public class Inventory {
 		for(int i = 0; i < CaveExplorer.caves[0].length; ++i){
 			map += "____"; // four underscores.
 		}
-		map += "___"; // three underscores.
+		map += "___\n"; // three underscores.
+		
+		for(CaveRoom[] row: CaveExplorer.caves){
+			// three rows of text.
+			for(int i = 0; i < 3; ++i){
+				// a line of text for each
+				for(CaveRoom cr: row){
+					String text = "|";
+					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()){
+						text = " ";
+					}
+					if(i == 0){
+						text += "   "; // three spaces.
+					}
+					else if(i == 1){
+						text += " " + cr.getContents() + " ";
+					}
+					else if(i == 2){
+						
+					}
+				}
+			}
+		}
 		
 	}
 	public String getDescription() {
