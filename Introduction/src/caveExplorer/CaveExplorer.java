@@ -9,7 +9,7 @@ public class CaveExplorer {
 	public static CaveRoom currentRoom;
 	public static Inventory inventory;
 
-	public static void Main(String[] args){
+	public static void main(String[] args){
 	
 		caves = new CaveRoom[5][5];
 		for(int row = 0; row < caves.length; ++row){
