@@ -9,7 +9,7 @@ public class Inventory {
 		this.hasMap = true;
 		this.updateMap();
 	}
-	private void updateMap() {
+	public void updateMap() {
 		// TODO Auto-generated method stub
 		this.map = " ";
 		
@@ -22,8 +22,9 @@ public class Inventory {
 			// three rows of text.
 			for(int i = 0; i < 3; ++i){
 				// a line of text for each
+				String text = "";
 				for(CaveRoom cr: row){
-					String text = "|";
+					text = "|";
 					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()){
 						text = " ";
 					}
@@ -34,11 +35,18 @@ public class Inventory {
 						text += " " + cr.getContents() + " ";
 					}
 					else if(i == 2){
-						
+						if(cr.getDoor(CaveRoom.SOUTH) != null && cr.getDoor(CaveRoom.SOUTH).isOpen()){
+							text += "   "; // three spaces.
+						}
+						else{
+							text += "___"; // 3 horizontal lines.
+						}
 					}
-				}
-			}
-		}
+				} // last cave room in the row.
+				text += "|";
+				map += text + "\n";
+			} // last of the three text lines.
+		} // very last row.
 		
 	}
 	public String getDescription() {
