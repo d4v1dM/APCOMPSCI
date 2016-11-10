@@ -14,7 +14,10 @@ public class EventRoom extends CaveRoom {
 	
 	public void enter(){
 		super.enter(); // does normal stuff first.
-		
+		if(!eventOccured){
+			eventOccured = true;
+			event.play();
+		}
 	}
 
 }
