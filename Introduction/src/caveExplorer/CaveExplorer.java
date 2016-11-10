@@ -41,6 +41,12 @@ public class CaveExplorer {
 		}
 	}
 
+	public static void print(String string) {
+		// TODO Auto-generated method stub
+		System.out.println(string);
+		
+	}
+
 }
 
 

@@ -37,7 +37,7 @@ public class Door {
 	}
 	public String getDetails() {
 		// TODO Auto-generated method stub
-		return this.getDetails();
+		return this.details;
 	}
 	
 	
