@@ -52,7 +52,7 @@ public class CaveRoom {
 	}
 
 	public String getContents(){
-		return contents;
+		return this.contents;
 	}
 	
 	public void enter(){

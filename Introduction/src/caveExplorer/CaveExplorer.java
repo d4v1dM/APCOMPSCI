@@ -17,6 +17,7 @@ public class CaveExplorer {
 				caves[row][col] = new CaveRoom("This cave has coordinates (" + row + "," + col + ")");
 			}
 		}
+		caves[0][2] = new EventRoom("This is the room where the guy with a tail met you.", new GameStartEvent());
 		// set starting point.
 		currentRoom = caves[0][1];
 		currentRoom.enter();

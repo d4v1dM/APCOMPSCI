@@ -6,7 +6,7 @@ public class Inventory {
 	private String map;
 	
 	public Inventory(){
-		this.hasMap = true;
+		this.hasMap = false;
 		this.updateMap();
 	}
 	public void updateMap() {
