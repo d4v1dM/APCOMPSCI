@@ -57,7 +57,7 @@ public class Inventory {
 		return "There is nothing in your inventory.";
 	}
 	
-	public void setMap(boolean b){
+	public void setHasMap(boolean b){
 		this.hasMap = b;
 	}
 }
