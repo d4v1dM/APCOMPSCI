@@ -13,7 +13,7 @@ public class Inventory {
 		// TODO Auto-generated method stub
 		this.map = " ";
 		
-		for(int i = 0; i < CaveExplorer.caves[0].length; ++i){
+		for(int i = 0; i < CaveExplorer.caves[0].length - 1; ++i){
 			map += "____"; // four underscores.
 		}
 		map += "___\n"; // three underscores.
@@ -24,9 +24,11 @@ public class Inventory {
 				// a line of text for each
 				String text = "";
 				for(CaveRoom cr: row){
-					text = "|";
+					//text = "|";
 					if(cr.getDoor(CaveRoom.WEST) != null && cr.getDoor(CaveRoom.WEST).isOpen()){
 						text = " ";
+					} else{
+						text += "|";
 					}
 					if(i == 0){
 						text += "   "; // three spaces.

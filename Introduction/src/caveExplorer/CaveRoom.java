@@ -56,15 +56,15 @@ public class CaveRoom {
 	}
 	
 	public void enter(){
-		contents = "X";
+		this.contents = "X";
 	}
 	
 	public void leave(){
-		contents = defaultContents;
+		this.contents = defaultContents;
 	}
 	
 	public void setDefaultContents(String symbol){
-		defaultContents = symbol;
+		this.defaultContents = symbol;
 	}
 	
 
@@ -92,7 +92,7 @@ public class CaveRoom {
 	 * @return opposite direction of dir (NORTH returns SOUTH...)
 	 */
 	public static int oppositeDirection(int dir){
-		return (dir+2)%4;
+		return (dir+2) % 4 ;
 	}
 
 	
@@ -126,14 +126,15 @@ public class CaveRoom {
 				break;
 			}
 		}
-		
-		if(borderingRooms[indexFound] != null && doors[indexFound].isOpen()){
+		goToRoom(indexFound);
+	}
+	public void goToRoom(int direction){
+		if(borderingRooms[direction] != null && doors[direction].isOpen()){
 			CaveExplorer.currentRoom.leave();
-			CaveExplorer.currentRoom = borderingRooms[indexFound];
+			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
 			CaveExplorer.inventory.updateMap();
 		}
-		
 	}
 	public boolean isValid(String s){
 		String[] keys = {"w","a","s","d"};
