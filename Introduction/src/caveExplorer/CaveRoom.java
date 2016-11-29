@@ -97,7 +97,7 @@ public class CaveRoom {
 
 	
 	public String getDescription(){
-		return description+directions;
+		return this.description + this.directions;
 	}
 
 	
