@@ -15,5 +15,6 @@ public class MainBattle {
 		bulbasaur.lapse();
 	}
 	
+	
 
 }
