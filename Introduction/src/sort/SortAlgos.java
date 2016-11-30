@@ -29,7 +29,7 @@ public class SortAlgos {
 			for(int j = (i + 1); j >= 0; --j){
 				if(arr[j] < arr[min]){
 					min = j; // save index of new min.
-					swap(arr,i,min);
+					swap(arr,(min + 1),min);
 					--min;
 				}
 			}
