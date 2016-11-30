@@ -25,11 +25,17 @@ public class SortAlgos {
 	public static void insertion_sort(int[] arr){
 		int min = 0; // malloc.
 		for(int i = 0; i < arr.length - 1; ++i){
-			min = i + 1; // initial min.
-			for(int j = (i + 1); j > 0; --j){
-				if(arr[j] < arr[min]) min = j; // save index of new min.
+			min = i; // initial min.
+			for(int j = (i + 1); j >= 0; --j){
+				if(arr[j] < arr[min]){
+					min = j; // save index of new min.
+					swap(arr,i,min);
+					--min;
+				}
 			}
-			if(arr[i] != arr[min]) swap(arr, i, min);
+			//if(arr[i] != arr[min]) swap(arr, i, min);
+			System.out.println("\nneewww\n");
+			printArr(arr);
 		}
 	}
 
