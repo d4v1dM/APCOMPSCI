@@ -19,6 +19,9 @@ public class RecursionIntro {
 			}
 		});
 	}
+	public static void hanoi(int numberOfTimes, String from, String mid, String to){
+	
+	}
 
 	private static void forLoop(int numberOfTimes, Action action) {
 		// TODO Auto-generated method stub
