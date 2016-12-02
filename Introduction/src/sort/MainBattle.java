@@ -11,8 +11,25 @@ public class MainBattle {
 		raticate.iChooseYou();
 		bulbasaur.iChooseYou();
 		System.out.println("Raticate is preparing to attack with super fang");
-		raticate.lapse();
-		bulbasaur.lapse();
+		raticate.attack(bulbasaur, new Attack() {
+			
+			@Override
+			public void attack(Pokemon target) {
+				// TODO Auto-generated method stub
+				System.out.println("Super fang is used!");
+				int newHP = target.getHP() / 2;
+				target.setHP(newHP);
+			}
+		});
+		bulbasaur.attack(raticate, new Attack() {
+			
+			@Override
+			public void attack(Pokemon target) {
+				// TODO Auto-generated method stub
+				System.out.println("Poison powder is used!");
+				target.setPoisoned(true);
+			}
+		});
 	}
 	
 	

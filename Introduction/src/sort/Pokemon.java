@@ -14,11 +14,20 @@ public class Pokemon {
 		this.hp = 100;
 		this.poisoned = false;
 	}
+	public void attack(Pokemon target, Attack attack){
+		if(Math.random() < .9){
+			attack.attack(target);
+			System.out.println("The attack hit");
+		}
+		else{
+			System.out.println("The attack missed");
+		}
+	}
 	public boolean isPoisoned(){
 		return this.poisoned;
 	}
 	public void iChooseYou(){
-		System.out.print("\n" + this.name + "\n");
+		System.out.print("\n" + this.name + "\n" + this.name + "\n");
 	}
 	public int getHP(){
 		return this.hp;
