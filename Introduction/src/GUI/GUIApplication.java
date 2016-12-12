@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-public class GUIApplication extends JFrame{
+public abstract class GUIApplication extends JFrame{
 	private Screen currentScreen;
 	public GUIApplication(int width, int height){
 		//constructor
@@ -16,18 +16,18 @@ public class GUIApplication extends JFrame{
 		setVisible(true);
 	}
 
-	private void initScreen() {
-		// TODO Auto-generated method stub
-		currentScreen = new Screen(getWidth(), getHeight());
-	}
+	public abstract void initScreen();
 	public void paint(Graphics g){
 		g.drawImage(currentScreen.getImage(), 0, 0, null);
 	}
+	public void setScreen(Screen s){
+		this.currentScreen = s;
+	}
 
 	// demo purposes only.
-	public static void main(String[] args){
+	 public static void main(String[] args){
 		// TODO Auto-generated method stub
-		new GUIApplication(800,600);
+		//new GUIApplication(800,600);
 	}
 
 }

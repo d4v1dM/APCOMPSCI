@@ -20,14 +20,18 @@ public class Screen {
 	public BufferedImage getImage(){
 		return this.image;
 	}
+	public int getWidth(){
+		return image.getWidth();
+	}
+	public int getHeight(){
+		return image.getHeight();
+	}
 	public void update(){
 		Graphics2D g = image.createGraphics();
 		// smooth the graphics
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.pink);
+		g.setColor(Color.white);
 		g.fillRect(0,0,image.getWidth(), image.getHeight());
 		g.setColor(Color.black);
-		g.drawString("Hello World", 40, 100);
-		g.drawOval(20, 60, 100, 50);
 	}
 }
