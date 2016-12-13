@@ -4,18 +4,32 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class Screen {
+import GUI.components.Visible;
+
+public abstract class Screen {
+	/*
+	 *  AP Topic:
+	 *  wrapper class -> class for primitive types
+	 *  
+	 *  
+	 * */
 
 	private BufferedImage image;
+	private ArrayList<Visible> viewObjects;
+	
 	public Screen(int width, int height){
+		viewObjects = new ArrayList<Visible>();
 		initImage(width, height);
+		initObjects(viewObjects);
 		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB_PRE);
 		update();
 	}
+	public abstract void initObjects(ArrayList<Visible> viewObjects);
 	private void initImage(int width, int height) {
 		// TODO Auto-generated method stub
-		
+		//image = new BufferedImage(width, height, BufferedImage)
 	}
 	public BufferedImage getImage(){
 		return this.image;
