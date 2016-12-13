@@ -16,6 +16,7 @@ public class TextLabel extends Component {
 		this.text = text;
 		this.font = "Helvetica";
 		this.size = 20;
+		update();
 	}
 
 	@Override

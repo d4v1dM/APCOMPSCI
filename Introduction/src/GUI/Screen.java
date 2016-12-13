@@ -47,5 +47,8 @@ public abstract class Screen {
 		g.setColor(Color.white);
 		g.fillRect(0,0,image.getWidth(), image.getHeight());
 		g.setColor(Color.black);
+		for(Visible v: viewObjects){
+			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
+		}
 	}
 }
