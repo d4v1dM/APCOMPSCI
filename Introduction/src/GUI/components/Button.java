@@ -26,7 +26,6 @@ public class Button extends TextLabel implements Clickable{
 			g.fillRoundRect(getX(), getY(), 125, 100, 25, 35);
 			g.drawRoundRect(getX(), getY(), 125, 100, 25, 35);
 		}
-		
 	}
 	@Override
 	public boolean isHovered(int x, int y) {
