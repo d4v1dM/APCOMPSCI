@@ -22,9 +22,9 @@ public class Button extends TextLabel implements Clickable{
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		g.setColor(Color.black);
 		g.setFont(new Font(super.getFont(), Font.PLAIN, super.getSize()));
-		if(super.getText() != null){
-			g.fillRoundRect(super.getX(), super.getY(), super.getWidth(), super.getHeight(), 30, 30);
-			g.drawRoundRect(super.getX(), super.getY(), super.getWidth(), super.getHeight(), 30, 30);
+		if(getText() != null){
+			g.fillRoundRect(getX(), getY(), 125, 100, 25, 35);
+			g.drawRoundRect(getX(), getY(), 125, 100, 25, 35);
 		}
 		
 	}
