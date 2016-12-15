@@ -8,15 +8,21 @@ public class BoolArray {
 		printArr(grid);
 		buttonClicked(3,3);
 	}
+	public static void switchIfValid(boolean[][] grid, int r, int c){
+		if(r >= 0 && r < grid.length && c >= 0 && c < grid[r].length){
+			grid[r][c] = ! grid[r][c];
+		}
+	}
 	public static void switchRow(boolean[] row, int x){
 		for(int i = -1; i < 2; ++i){
 			if(x + i >= 0 && x + i < row.length){
-				
+				row[x + i] = !row[x + i];
 			}
 		}
 	}
 	public static void switchColumn(boolean[][] grid, int r, int c){
-		
+		switchIfValid(grid, r - 1, c);
+		switchIfValid(grid, r + 1, c);
 	}
 	public static void buttonClicked(int r, int c) {
 		// TODO Auto-generated method stub
