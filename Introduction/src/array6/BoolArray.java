@@ -9,7 +9,11 @@ public class BoolArray {
 		buttonClicked(3,3);
 	}
 	public static void switchRow(boolean[] row, int x){
-		
+		for(int i = -1; i < 2; ++i){
+			if(x + i >= 0 && x + i < row.length){
+				
+			}
+		}
 	}
 	public static void switchColumn(boolean[][] grid, int r, int c){
 		
