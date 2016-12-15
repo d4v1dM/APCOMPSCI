@@ -12,5 +12,4 @@ public class BoolArray {
 			else System.out.println("X");
 		}
 	}
-
 }
