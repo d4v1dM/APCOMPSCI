@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-public abstract class GUIApplication extends JFrame{
+public abstract class GUIApplication extends JFrame implements Runnable{
 	private Screen currentScreen;
 	public GUIApplication(int width, int height){
 		//constructor
@@ -23,11 +23,26 @@ public abstract class GUIApplication extends JFrame{
 	public void setScreen(Screen s){
 		this.currentScreen = s;
 	}
+	public void run(){
+		while(true){
+			// redraw the display:
+			currentScreen.update();
+			//update the window:
+			repaint();
+			try {
+				Thread.sleep(30);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	// demo purposes only.
 	 public static void main(String[] args){
 		// TODO Auto-generated method stub
 		//new GUIApplication(800,600);
 	}
+	 
 
 }
