@@ -22,6 +22,10 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 	}
 	public void setScreen(Screen s){
 		this.currentScreen = s;
+		if(currentScreen != null){
+			addMouseListener(currentScreen.getMouseListener());
+			addMouseMotionListener(currentScreen.getMouseMotionListener());
+		}
 	}
 	public void run(){
 		while(true){

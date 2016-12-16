@@ -3,6 +3,8 @@ package GUI;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -50,5 +52,12 @@ public abstract class Screen {
 		for(Visible v: viewObjects){
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
+	}
+	// represents the ability to listen to the mouse.
+	public MouseMotionListener getMouseMotionListener(){
+		return null; // by default, nothing is to be listened.
+	}
+	public MouseListener getMouseListener(){
+		return null;
 	}
 }
