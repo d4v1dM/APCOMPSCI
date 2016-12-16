@@ -37,4 +37,11 @@ public class Button extends TextLabel implements Clickable{
 		// TODO Auto-generated method stub
 		this.action.act();
 	}
+	public Color getColor(){
+		return color;
+	}
+	public void setColor(Color color){
+		this.color = color;
+		update();
+	}
 }
