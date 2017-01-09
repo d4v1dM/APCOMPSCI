@@ -10,35 +10,41 @@ public class TextArea extends TextLabel {
 
 	public TextArea(int x, int y, int w, int h, String text) {
 		super(x, y, w, h, text);
+
 	}
-	
-	@Override
-	public void update(Graphics2D g) {
-		if(getText() == null){
-			return;
-		}
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		FontMetrics fm = g.getFontMetrics();//width of pixel
-		String[] words = getText().split(" ");//splits word at every space
-		int widthLimit = getWidth();
-		int heightLimit = getHeight();
-		int tempH = getHeight() - 5;
-		int tempW = 4;
-		String line = "";
-		for(String w : words){
-			if((tempW + fm.stringWidth(w)) < widthLimit){
-				line += w;
-				tempW += fm.stringWidth(w);
+
+	public void update(Graphics2D g){
+		g = clear();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
+		FontMetrics fm = g.getFontMetrics();
+		g.setColor(Color.black);
+		if(getText() != null){
+			String[] words = getText().split(" ");
+			if(words.length >0){
+				int i = 0;
+				final int SPACING = 2;
+				int y = 0 + fm.getHeight()+SPACING;
+				String line = words[i] + " ";
+				i++;
+				while(i < words.length){//make more lines
+					//controls a single line of text
+					while(i < words.length && fm.stringWidth(line) +
+							fm.stringWidth(words[i]) < getWidth()){
+						line += words[i]+" ";
+						i++;
+					}
+					if(y < getHeight()){
+						g.drawString(line, 2, y);
+						y += fm.getDescent() + fm.getHeight()+SPACING;
+						line = "";
+					}else{
+						break;//print no more text
+					}
+				}
 			}
-			else if((tempH + fm.getHeight()+fm.getDescent())<heightLimit){
-				g.drawString(line, 4, tempH);
-				tempH += (fm.getDescent() + fm.getHeight());
-				// reset line:
-				line = "";
-				tempW = 0;
-			}
-			else break; // no more space for other words.
+
 		}
-		//setText(line);
 	}
+
 }
