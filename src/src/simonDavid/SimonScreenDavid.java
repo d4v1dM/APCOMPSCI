@@ -15,6 +15,7 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 	private boolean acceptingInput; // input is valid?
 	private TextLabel label; // text
 	private int lastMove; // last number inputted.
+	private int sequenceIdx;
 	private ButtonInterfaceDavid[] validMoves; // possible moves.
 	private int numOfButtons = 6; // number of buttons on screen, same number as number of colors.
 	private Color[] colors = {Color.blue,Color.black, Color.gray, Color.ORANGE, Color.RED};
@@ -34,7 +35,7 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		moves = new ArrayList<MoveInterfaceDavid>();
@@ -67,7 +68,7 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 	public ButtonInterfaceDavid getAButton(){
 		return null;
 	}
-	public void addButtons() {
+	public void addButtons(ArrayList<Visible> objects) {
 		// TODO Auto-generated method stub
 
 		for(int i = 0; i < numOfButtons; ++i){
@@ -93,9 +94,18 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 							}
 						});
 						blink.start(); // execute thread.
+						if(moves.get(sequenceIdx).getButton() == b){
+							++sequenceIdx;
+							if(sequenceIdx == moves.size()){ // check if round is over.
+								Thread nextRound = new Thread(SimonScreenDavid.this);
+								nextRound.start(); // start next round.
+							}
+						}
+						else progress.gameOver();
 					}
 				}
 			});
+			objects.add(b); // add button to view object vector.
 		}
 	}
 
