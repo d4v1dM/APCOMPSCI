@@ -1,5 +1,6 @@
-package gui.components;
+package GUI.components;
 
 public interface Action {
+
 	public void act();
 }

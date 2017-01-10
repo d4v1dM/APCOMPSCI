@@ -1,46 +1,38 @@
-package gui;
+package GUI;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
-
-import gui.sampleGames.MyScreen;
-import gui.screens.CoordinateScreen;
 
 public abstract class GUIApplication extends JFrame implements Runnable{
 	private Screen currentScreen;
 	public GUIApplication(int width, int height){
+		//constructor
 		super();
 		setBounds(20,20,width,height);
-		//20,20 = coordinates it appears
+		// terminates program when window is closed.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//Calls it in MouseFollower
 		initScreen();
 		setVisible(true);
 	}
 
 	public abstract void initScreen();
-//	public static void main(String[] args){
-//		new GUIApplication(800,600);
-//		new Screen(800,600);
-//	}
 	public void paint(Graphics g){
-		g.drawImage(currentScreen.getImage(),0,0,null);
+		g.drawImage(currentScreen.getImage(), 0, 0, null);
 	}
-
-	public void setScreen(Screen myScreen) {
-		if(currentScreen!=null){
+	public void setScreen(Screen s){
+		if(currentScreen != null){
 			MouseListener ml = currentScreen.getMouseListener();
-			if(ml != null){
-				removeMouseListener(ml);
-			}
-			MouseListener mml = currentScreen.getMouseListener();
-			if(mml!=null){
-				removeMouseListener(mml);
-			}
+			if(ml != null) removeMouseListener(ml);
+			
+			MouseMotionListener mml = currentScreen.getMouseMotionListener();
+			if(mml != null) removeMouseMotionListener(mml);
 		}
-		this.currentScreen = myScreen;
+		
+		this.currentScreen = s;
+		
 		if(currentScreen != null){
 			addMouseListener(currentScreen.getMouseListener());
 			addMouseMotionListener(currentScreen.getMouseMotionListener());
@@ -48,7 +40,9 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 	}
 	public void run(){
 		while(true){
+			// redraw the display:
 			currentScreen.update();
+			//update the window:
 			repaint();
 			try {
 				Thread.sleep(30);
@@ -58,4 +52,12 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 			}
 		}
 	}
+
+	// demo purposes only.
+	 public static void main(String[] args){
+		// TODO Auto-generated method stub
+		//new GUIApplication(800,600);
+	}
+	 
+
 }
