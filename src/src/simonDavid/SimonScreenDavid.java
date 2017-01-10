@@ -3,10 +3,7 @@ package simonDavid;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import gui.components.Action;
-import gui.components.ClickableScreen;
-import gui.components.TextLabel;
-import gui.components.Visible;
+import gui.components.*;
 
 public class SimonScreenDavid extends ClickableScreen implements Runnable {
 	private ProgressInterfaceDavid progress; // what is the progress.
@@ -29,8 +26,43 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
+		label.setText("");
+		nextRound();
 
 	}
+
+	public void nextRound() {
+		acceptingInput = false;
+		++roundNum; // new round = increase round.
+		moves.add(randomMove()); // simon says new move.
+		// update current progress(state).
+		progress.setRound(roundNum);
+		progress.setSequenceSize(moves.size());
+		changeText("Simon's turn."); // notify the user to follow new sequence.
+		label.setText(""); // reset screen message.
+		playSequence(); // play the sequence of moves.
+		changeText("Your turn!"); // new screen message to input user's guess.
+		acceptingInput = true; // first phase is done --> accept input.
+		sequenceIdx = 0; // reset the sequence index.
+	}
+
+	public void playSequence() {
+		ButtonInterfaceDavid b = null;
+		for(int i = 0; i < moves.size(); ++i){
+			if(b != null) b.dim(); // turn off color.
+			b = moves.get(i).getButton(); // get the button of the move.
+			b.highlight();
+			int sleepTime = (roundNum*roundNum) % (roundNum * 2); // higher the round, lower the sleep time.
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+		b.dim();
+	}
+
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
@@ -106,6 +138,15 @@ public class SimonScreenDavid extends ClickableScreen implements Runnable {
 				}
 			});
 			objects.add(b); // add button to view object vector.
+		}
+	}
+	public void changeText(String s){
+		label.setText(s);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
