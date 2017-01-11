@@ -14,7 +14,7 @@ public abstract class ClickableScreen extends Screen implements MouseListener {
 		// TODO Auto-generated constructor stub
 	}
 	public boolean isHovered(int x, int y, Visible v) {
-		return (x > v.getx() && x < v.getx()+getWidth() && y > v.gety() && y < v.gety()+getHeight());
+		return (x > v.getX() && x < v.getX()+getWidth() && y > v.getY() && y < v.getY()+getHeight());
 	}
 
 	@Override

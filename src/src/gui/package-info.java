@@ -5,4 +5,4 @@
  * @author Student 6
  *
  */
-package GUI;
+package gui;

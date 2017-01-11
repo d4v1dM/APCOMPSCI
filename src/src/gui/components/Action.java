@@ -1,4 +1,4 @@
-package GUI.components;
+package gui.components;
 
 public interface Action {
 

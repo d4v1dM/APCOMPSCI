@@ -44,7 +44,7 @@ public abstract class Screen {
 		//}
 		
 		for(int i = 0; i < viewObjects.size(); ++i){
-			g.drawImage(viewObjects.get(i).getImage(), viewObjects.get(i).getx() , viewObjects.get(i).gety(), null);
+			g.drawImage(viewObjects.get(i).getImage(), viewObjects.get(i).getX() , viewObjects.get(i).getX(), null);
 		}	
 //		g.setColor(Color.black);
 //		g.drawString("Hello World!",  49, 100);

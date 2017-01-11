@@ -1,4 +1,4 @@
-package GUI;
+package gui;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
@@ -6,6 +6,7 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public abstract class GUIApplication extends JFrame implements Runnable{
 	private Screen currentScreen;
 	public GUIApplication(int width, int height){

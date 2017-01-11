@@ -1,13 +1,13 @@
-package GUI.sampleGames;
-import GUI.GUIApplication;
-import GUI.screens.CoordinateScreen;
+package gui.sampleGames;
+import gui.GUIApplication;
+import gui.screens.CoordinateScreen;
 
 import java.util.ArrayList;
 
-import GUI.GUIApplication;
-import GUI.components.TextLabel;
-import GUI.components.Visible;
-import GUI.screens.CoordinateScreen;
+import gui.GUIApplication;
+import gui.components.TextLabel;
+import gui.components.Visible;
+import gui.screens.CoordinateScreen;
 
 public class MouseFollower extends GUIApplication {
 
