@@ -1,4 +1,4 @@
-package GUI.screens;
+package gui.screens;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
